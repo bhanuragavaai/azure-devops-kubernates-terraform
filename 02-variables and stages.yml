@@ -19,6 +19,20 @@ stages:
     - bash: echo $(Build.BuildNumber)
     - bash: echo $(Build.BuildId)
 - stage: SIT
+  dependsOn:
+   - QA
+  variables:
+    bhanu: Dev
+  jobs:
+  - job: SITJob
+    steps:
+    - bash: echo SIT FirstJob
+    - bash: echo $(bhanu)
+    - bash: echo $(Build.BuildNumber)
+    - bash: echo $(Build.BuildId)    
+- stage: Prepod
+  dependsOn:
+   - QA  
   variables:
     bhanu: Dev
   jobs:
@@ -30,8 +44,8 @@ stages:
     - bash: echo $(Build.BuildId)    
 - stage: Prod
   dependsOn:
-   - QA
    - SIT
+   - Prepod
   jobs:
   - job: PRODJob
     steps:
