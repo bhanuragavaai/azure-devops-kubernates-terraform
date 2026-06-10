@@ -30,8 +30,8 @@ stages:
     - bash: echo $(Build.BuildId)    
 - stage: Prod
   dependsOn:
-   -QA
-   -SIT
+   - QA
+   - SIT
   jobs:
   - job: PRODJob
     steps:
