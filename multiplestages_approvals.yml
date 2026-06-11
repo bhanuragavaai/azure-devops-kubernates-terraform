@@ -13,7 +13,7 @@ stages:
 
 - stage: Dev
   jobs:
-  - deployment:
+  - deployment: devDeployment
     environment: Dev
     strategy:
      runOnce:
@@ -23,7 +23,7 @@ stages:
 
 - stage: Prod
   jobs:
-  - deployment:
+  - deployment: prodDeployment
     environment: Prod
     strategy:
      runOnce:
