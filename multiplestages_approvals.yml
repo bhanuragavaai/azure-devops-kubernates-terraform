@@ -1,0 +1,33 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Build
+  jobs:
+  - job:
+    steps:
+      - bash: echo "in build"
+
+- stage: Dev
+  jobs:
+  - deployment:
+    environment: Dev
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+           - bash: echo "in dev" 
+
+- stage: Prod
+  jobs:
+  - deployment:
+    environment: Prod
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+           - bash: echo "in prod" 
+      
